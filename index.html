@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sınav Hazırlık Kampı Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="view-home" class="app-view active-view main-center">
+            <header>
+                <h1>Sınav Hazırlık Kampı</h1>
+                <p class="subtitle">Hedef: Yüksek GANO | Lütfen incelemek istediğiniz paneli seçin</p>
+                
+                <div class="welcome-box">
+                    <div class="nav-cards">
+                        <a href="javascript:void(0)" onclick="switchView('view-takvim')" class="nav-card">
+                            <span class="card-icon">📋</span>
+                            <h3>1. Resmi Sınav Takvimi</h3>
+                            <p>Güncel sınav tarihleri ve saatleri</p>
+                        </a>
+                        <a href="javascript:void(0)" onclick="switchView('view-harita')" class="nav-card">
+                            <span class="card-icon">🎯</span>
+                            <h3>2. Ders Yol Haritaları</h3>
+                            <p>Ders seçimi, nokta atışı videolar ve taktikler</p>
+                        </a>
+                        <a href="javascript:void(0)" onclick="switchView('view-plan')" class="nav-card">
+                            <span class="card-icon">⏱️</span>
+                            <h3>3. Günlük Çalışma Planı</h3>
+                            <p>27 Mayıs - 10 Haziran yoğunlaştırılmış takvim</p>
+                        </a>
+                        <a href="javascript:void(0)" onclick="switchView('view-tavsiye')" class="nav-card" style="border-color: #10b981;">
+                            <span class="card-icon">💡</span>
+                            <h3 style="color: #10b981;">4. Ders Çalışma Taktikleri</h3>
+                            <p>Hangi derse nasıl yaklaşmalı, altın tavsiyeler</p>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div id="view-takvim" class="app-view">
+            <section>
+                <div class="section-header">
+                    <h2>📋 Resmi Sınav Takvimi (Haziran)</h2>
+                    <button onclick="switchView('view-home')" class="back-to-top">◀ Menü</button>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ders Kodu</th>
+                                <th>Ders Adı</th>
+                                <th>Sınav Adı</th>
+                                <th>Tarih ve Saat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="exam-row">
+                                <td class="highlight">YGB 102</td>
+                                <td>Web Geliştirmeye Giriş</td>
+                                <td>Yarıyıl Sonu Sınavı</td>
+                                <td><span class="badge badge-exam">01.06.2026 11:00</span></td>
+                            </tr>
+                            <tr class="exam-row">
+                                <td class="highlight">MATE 112</td>
+                                <td>Matematik II</td>
+                                <td>FİNAL</td>
+                                <td><span class="badge badge-exam">04.06.2026 13:00</span></td>
+                            </tr>
+                            <tr class="exam-row">
+                                <td class="highlight">FİZ 102</td>
+                                <td>Fizik II</td>
+                                <td>Yarıyıl Sonu Sınavı</td>
+                                <td><span class="badge badge-exam">05.06.2026 14:00</span></td>
+                            </tr>
+                            <tr class="exam-row">
+                                <td class="highlight">İNG 400</td>
+                                <td>İş Hayatında İngilizce</td>
+                                <td>Yarıyıl Sonu Sınavı</td>
+                                <td><span class="badge badge-exam">06.06.2026 13:30</span></td>
+                            </tr>
+                            <tr class="exam-row">
+                                <td class="highlight">YGB 104</td>
+                                <td>Hesaplamalı Düşünme ve Mantıksal Tasarım</td>
+                                <td>Yarıyıl Sonu Sınavı</td>
+                                <td><span class="badge badge-exam">09.06.2026 10:00</span></td>
+                            </tr>
+                            <tr class="exam-row">
+                                <td class="highlight">BİM 108</td>
+                                <td>Algoritmalar ve Programlama II</td>
+                                <td>Yarıyıl Sonu Sınavı</td>
+                                <td><span class="badge badge-exam">10.06.2026 14:00</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-harita" class="app-view">
+            <section>
+                <div class="section-header">
+                    <h2>🎯 Ders Bazlı Yol Haritaları</h2>
+                    <button onclick="switchView('view-home')" class="back-to-top">◀ Menü</button>
+                </div>
+
+                <div class="tabs-container">
+                    <button class="tab-btn active" onclick="switchTab(event, 'matematik')">📐 Matematik II</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'web-gelistirme')">💻 Web Geliştirme</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'fizik')">⚡ Fizik II</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'algoritma')">🧠 Algoritmalar II</button>
+                </div>
+
+                <div id="matematik" class="tab-content active">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 150px;">Çıkacak Konu</th>
+                                    <th style="min-width: 200px;">Önerilen Video Kaynağı</th>
+                                    <th style="min-width: 300px;">Konuyu Nasıl Öğrenmeliyim? (Strateji)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="highlight">Kısmi Türev</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=buders+kismi+turev+konu+anlatimi" target="_blank" class="video-link">▶ BUders Kısmi Türev Serisi</a></td>
+                                    <td>x'e göre türev alırken y'yi, y'ye göre alırken x'i düz bir sayı (örneğin 5) gibi düşün. İşlem adımları tamamen standarttır, kuralları ezberle.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Birim Teğet Vektörü & Norm</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=buders+teget+vektor+ve+birim+teget+vektor" target="_blank" class="video-link">▶ BUders Birim Teğet Vektörü</a></td>
+                                    <td>Sana verilen fonksiyonun önce türevini al. Sonra o türevin karekök içinde karelerini toplayarak boyunu (Norm) hesapla. Türevi norm değerine böl.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Çift Katlı İntegral (Alan/Hacim)</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=buders+cift+katli+integral+sinir+belirleme" target="_blank" class="video-link">▶ BUders Çift Katlı İntegral</a></td>
+                                    <td>Dersteki ve kaynak kitaplardaki çözümlü grafik çizimlerine odaklan. İntegral almaktan ziyade, grafiğe bakıp sınır yazmayı (x ve y aralığı) öğren.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Kutupsal Koordinatlar (Çember)</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=buders+kutupsal+koordinatlara+donusturme" target="_blank" class="video-link">▶ BUders Kutupsal Dönüşüm</a></td>
+                                    <td>Sınavda çember alanları sorulduğunda x yerine r.cosθ, y yerine r.sinθ yazarak integrali çok basit bir hale indirgemeyi öğren.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="web-gelistirme" class="tab-content">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 150px;">Sınav Soru Tipi</th>
+                                    <th style="min-width: 200px;">Önerilen Video Kaynağı</th>
+                                    <th style="min-width: 300px;">Konuyu Nasıl Öğrenmeliyim? (Strateji)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="highlight">Ekran Görüntüsünden Kod Çıkarma</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=sadik+turan+html+css+flexbox" target="_blank" class="video-link">▶ Sadık Turan HTML/CSS Flexbox</a></td>
+                                    <td>Gördüğün arayüzü HTML bloklarına bölmeyi ve CSS Flexbox kullanarak elemanları hizalamayı pratik et.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">JS Menü Sistemi</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=w3schools+how+to+tabs" target="_blank" class="video-link">▶ W3Schools How To Tabs Yapısı</a></td>
+                                    <td>Tamamen DOM manipülasyonudur. document.getElementById ile element seçmeyi ve addEventListener ile elementi gizleyip açmayı pratik yap.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Teorik Tanımlar</td>
+                                    <td>Okul Slaytları & Notlar</td>
+                                    <td>İşlenen teorik konuların (Firebase mantığı, modern JS terimleri vb.) tanımlarını incele, bu kısım kodlama gerektirmez.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="fizik" class="tab-content">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 150px;">Çıkacak Konu</th>
+                                    <th style="min-width: 200px;">Önerilen Video Kaynağı</th>
+                                    <th style="min-width: 300px;">Konuyu Nasıl Öğrenmeliyim? (Strateji)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="highlight">Kirchhoff Kuralları & DC Devreler</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=bogaziciliden+fizik+2+kirchhoff" target="_blank" class="video-link">▶ Boğaziçiliden Kirchhoff Dersleri</a></td>
+                                    <td>Bu konuyu bir algoritma gibi düşün. Akım yönlerini seç, döngüleri kur ve işaret kurallarına uyarak 3 bilinmeyenli denklem sistemini çözmeyi öğren.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Sığaçlar (Kapasitörler)</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=bogaziciliden+fizik+2+sigaclar" target="_blank" class="video-link">▶ Boğaziçiliden Sığaçlar</a></td>
+                                    <td>Seri ve paralel bağlama kuralları dirençlerin tam tersidir. Eşdeğer sığa bulmayı ve sığaç başına düşen yükü (Q=C.V) tek bir kağıda yazıp ezberle.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Manyetik Alan & Kuvvet</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=ozkan+celen+fizik+2+manyetik+alan" target="_blank" class="video-link">▶ Özkan Çelen Manyetik Alan</a></td>
+                                    <td>Sağ El Kuralı mekaniğini öğren. Yüklü parçacıkların sapma yönü sorularını ve tel manyetik alan formüllerini pratik et.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="algoritma" class="tab-content">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 150px;">Çıkacak Konu</th>
+                                    <th style="min-width: 200px;">Önerilen Video Kaynağı</th>
+                                    <th style="min-width: 300px;">Konuyu Nasıl Öğrenmeliyim? (Strateji)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="highlight">Tek ve Çok Boyutlu Diziler (Arrays)</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=yazilim+bilimi+c%2B%2B+diziler" target="_blank" class="video-link">▶ Yazılım Bilimi Dizi Pratikleri</a></td>
+                                    <td>Dizi ağırlıklı sorular geleceği için matris yapılarına, iç içe for döngüleri ile çok boyutlu dizilerde gezinme ve eleman manipülasyonu kodlarına çalış.</td>
+                                </tr>
+                                <tr>
+                                    <td class="highlight">Dizilerde Arama ve Sıralama</td>
+                                    <td><a href="https://www.youtube.com/results?search_query=bunu+da+mi+bilmiyorsun+bubble+sort" target="_blank" class="video-link">▶ Bubble / Selection Sort Mantığı</a></td>
+                                    <td>Sıralama algoritmalarından (en azından Bubble Sort) kod şablonunu adın gibi bil. Dizide en büyük/en küçük elemanı bulma algoritmasını kendin yazabiliyor olmalısın.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-plan" class="app-view">
+            <section>
+                <div class="section-header">
+                    <h2>⏱️ Günlük Yoğunlaştırılmış Çalışma Planı</h2>
+                    <button onclick="switchView('view-home')" class="back-to-top">◀ Menü</button>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="min-width: 120px;">Tarih</th>
+                                <th style="min-width: 200px;">Gündüz Bloğu (Ağırlıklı Odak)</th>
+                                <th style="min-width: 200px;">Gece Bloğu (Hafif / Tekrar)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="highlight">27 Mayıs Çarşamba</td>
+                                <td>Web Geliştirme (JS Menü Sistemleri & DOM)</td>
+                                <td>Matematik II (Kısmi Türev & Birim Teğet)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">28 Mayıs Perşembe</td>
+                                <td>Web Geliştirme (HTML/CSS & Flexbox Layout)</td>
+                                <td>Fizik II (Sığaçlar / Kapasitörler)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">29 Mayıs Cuma</td>
+                                <td>Web Geliştirme (JS DOM + Tanımlar)</td>
+                                <td>Matematik II (Çift Katlı İntegral Giriş)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">30 Mayıs Cumartesi</td>
+                                <td>Web Geliştirme (Süre Tutarak Sınav Provaları)</td>
+                                <td>Fizik II (Kirchhoff Kuralları & Devreler)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">31 Mayıs Pazar</td>
+                                <td>Web Geliştirme (Genel Kod Tekrarı)</td>
+                                <td>İngilizce IV (Okumalar) + Fizik Tekrar</td>
+                            </tr>
+                            <tr class="calendar-exam-day">
+                                <td class="highlight">1 Haziran Pazartesi</td>
+                                <td>💻 WEB GELİŞTİRME SINAVI (11:00)</td>
+                                <td>Matematik II (Çözümlü Soru Tekrarı)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">2 Haziran Salı</td>
+                                <td>Matematik II (Kaynak Kitap Soruları)</td>
+                                <td>Fizik II (Kirchhoff Devreleri Soru Çözümü)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">3 Haziran Çarşamba</td>
+                                <td>Matematik II (Çemberli Alan/Hacim & Son Tekrar)</td>
+                                <td>Fizik II (Manyetik Alan & Sağ El Kuralı)</td>
+                            </tr>
+                            <tr class="calendar-exam-day">
+                                <td class="highlight">4 Haziran Perşembe</td>
+                                <td>📐 MATEMATİK II SINAVI (13:00)</td>
+                                <td>Fizik II (Formül Kağıdı Üzerinden Soru Tipleri)</td>
+                            </tr>
+                            <tr class="calendar-exam-day">
+                                <td class="highlight">5 Haziran Cuma</td>
+                                <td>⚡ FİZİK II SINAVI (14:00)</td>
+                                <td>İş Hayatında İngilizce (Önemli Kelimeler)</td>
+                            </tr>
+                            <tr class="calendar-exam-day">
+                                <td class="highlight">6 Haziran Cumartesi</td>
+                                <td>📝 İŞ HAYATINDA İNGİLİZCE SINAVI (13:30)</td>
+                                <td>Dinlenme ve Kafa Boşaltma</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">7 Haziran Pazar</td>
+                                <td>Algoritmalar II (Diziler, Çok Boyutlu Matrisler)</td>
+                                <td>Hesaplamalı Düşünme (Permütasyon & Kombinasyon)</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">8 Haziran Pazartesi</td>
+                                <td>Hesaplamalı Düşünme (Mantıksal Tasarım Konuları)</td>
+                                <td>Algoritmalar II (Dizi Sıralama/Arama Kodları)</td>
+                            </tr>
+                            <tr class="calendar-exam-day">
+                                <td class="highlight">9 Haziran Salı</td>
+                                <td>🧠 HESAPLAMALI DÜŞÜNME SINAVI (10:00)</td>
+                                <td>Algoritmalar II (Son Pratikler & Çıkmışlar)</td>
+                            </tr>
+                            <tr class="calendar-exam-day">
+                                <td class="highlight">10 Haziran Çarşamba</td>
+                                <td>💻 ALGORİTMALAR VE PROG. II SINAVI (14:00)</td>
+                                <td>🎉 Dönem Bitişi Kutlaması!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-tavsiye" class="app-view">
+            <section>
+                <div class="section-header">
+                    <h2>💡 Ders Bazlı Çalışma ve Psikoloji Taktikleri</h2>
+                    <button onclick="switchView('view-home')" class="back-to-top">◀ Menü</button>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="min-width: 150px;">Ders Adı</th>
+                                <th style="min-width: 250px;">Nasıl Yaklaşmalısın? (Psikoloji)</th>
+                                <th style="min-width: 250px;">Altın Tavsiye ve Uygulama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="highlight">Web Geliştirmeye Giriş</td>
+                                <td>Sadece izleyerek veya okuyarak geçemezsin. Bu ders el alışkanlığı ister. Hata yapmaktan ve kodları bozmaktan korkma.</td>
+                                <td>Sınavdaki menü sistemi sorusu için derste işlenen veya örnek projelerdeki dinamik yapıları sıfırdan, bakmadan kodlamaya çalış.</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">Matematik II</td>
+                                <td>"Bu formül nereden geliyor?" diye sorgulama vakti değil. Matematik II'yi bir mantık dersi olarak değil, <strong>şablon ezberleme</strong> dersi olarak gör.</td>
+                                <td>Defterdeki ve ders kitabındaki soruların sayıları değişir, çözüm adımları asla değişmez. Çözümü 3 kez baka baka yaz, 4.de kendin çözeceksin.</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">Fizik II</td>
+                                <td>Havada uçuşan yükler kafanı karıştırabilir. Fiziğe bir bilim insanı değil, bir <strong>yazılımcı gibi</strong> yaklaş.</td>
+                                <td>Özellikle devre soruları (Kirchhoff) tamamen bir algoritmadır. Formülleri birer fonksiyon, verileri input olarak gör. Denklem kur ve çöz!</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">Algoritmalar ve Prog. II</td>
+                                <td>Bir yazılım öğrencisi olarak burası ana alanınız. Temel mantığı zaten derste gördünüz, önemli olan pratik eksikliğini kapatmak.</td>
+                                <td>C, C++ veya C# fark etmeksizin temel döngü mantıklarını kağıt üzerinde yazma pratiği yapın. Sınavda kodu derleyen bir bilgisayar olmayacak.</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">Hesaplamalı Düşünme</td>
+                                <td>Tamamen beyin fırtınası ve bulmaca çözmek gibidir. Ezberden çok olaylar arasındaki bağlantıyı kurmaya odaklanın.</td>
+                                <td>Mantık kapılarının ("Ve", "Veya") günlük hayattaki karşılıklarını düşünerek doğruluk tablolarını çözümlemeye çalışın.</td>
+                            </tr>
+                            <tr>
+                                <td class="highlight">İş Hayatında İngilizce</td>
+                                <td>Ağır gramer kurallarıyla zaman kaybetmeyin. Mesleki hayatınızda kullanacağınız terimlere aşinalık kazanmanız yeterli.</td>
+                                <td>Slaytlardaki e-posta kalıpları, CV terimleri ve iş dünyası kelimelerinin Türkçe karşılıklarını bilmek sınavı rahatça geçmenizi sağlar.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

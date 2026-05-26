@@ -1,0 +1,258 @@
+:root {
+    --bg-color: #121214;
+    --card-bg: #1a1a1e;
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --text-color: #e4e4e7;
+    --text-muted: #a1a1aa;
+    --border-color: #2e2e33;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 2rem 1rem;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* SPA Görünüm Ayarları */
+.app-view { display: none; }
+.app-view.active-view {
+    display: block;
+    animation: fadeInView 0.4s ease;
+}
+
+@keyframes fadeInView {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.main-center {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.welcome-box {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(26, 26, 30, 0.3) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.nav-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.nav-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.nav-card:hover, .nav-card:active {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15);
+}
+
+.card-icon { font-size: 2.2rem; }
+.nav-card h3 { font-size: 1.2rem; color: #ffffff; }
+.nav-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+/* SECTIONS VE TABLOLAR */
+section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    flex-wrap: wrap; /* Mobilde butonun alta inmesini sağlar */
+    gap: 1rem;
+}
+
+section h2 {
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+/* Mobil Uyumlu Geri Dön Butonu */
+.back-to-top {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.back-to-top:hover, .back-to-top:active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Tabloların Telefondan Taşmaması İçin Scroll */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* iOS cihazlarda pürüzsüz kaydırma sağlar */
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: rgba(99, 102, 241, 0.08);
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap; /* Başlıkların sıkışmasını engeller */
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    vertical-align: top;
+}
+
+tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+.exam-row { background-color: rgba(244, 63, 94, 0.02); }
+.calendar-exam-day { background-color: rgba(244, 63, 94, 0.04); font-weight: 600; }
+
+/* INTERAKTIF TABS (DERS SEÇİMİ) */
+.tabs-container {
+    display: flex;
+    flex-wrap: nowrap; /* Mobilde sekmeleri yan yana dizer, scroll verir */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.tabs-container::-webkit-scrollbar { height: 4px; }
+.tabs-container::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+.tab-btn {
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Yazıların alt satıra geçmesini engeller */
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+
+/* ETİKETLER VE LİNKLER */
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-exam {
+    background-color: rgba(244, 63, 94, 0.15);
+    color: #f43f5e;
+    border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+a.video-link { color: var(--primary-color); text-decoration: none; font-weight: 600; }
+a.video-link:hover { text-decoration: underline; color: #818cf8; }
+.highlight { color: #ffffff; font-weight: 600; }
+
+/* ==========================================
+   📱 MOBİL CİHAZLAR İÇİN ÖZEL KURALLAR
+========================================== */
+@media screen and (max-width: 768px) {
+    body { padding: 1rem 0.5rem; }
+    
+    header h1 { font-size: 1.8rem; }
+    .subtitle { font-size: 0.95rem; margin-bottom: 1.5rem; }
+    
+    .welcome-box { padding: 1rem; border-radius: 12px; }
+    .nav-cards { gap: 1rem; grid-template-columns: 1fr; /* Mobilde kartları tek sıra yapar */ }
+    
+    section { padding: 1rem; border-radius: 12px; }
+    section h2 { font-size: 1.2rem; }
+    
+    .section-header { flex-direction: column; align-items: flex-start; }
+    .back-to-top { width: 100%; text-align: center; } /* Buton mobilde tam genişlik olur */
+    
+    td, th { padding: 0.75rem; font-size: 0.9rem; }
+}
