@@ -33,14 +33,9 @@ function switchTab(event, tabId) {
 }
 
 /* ==========================================
-   PDF MODAL (AÇILIR PENCERE VE IFRAME) SİSTEMİ
+   PDF MODAL (AÇILIR PENCERE VE GOOGLE VIEWER) SİSTEMİ
 ========================================== */
 
-/**
- * İndirmeyi engelleyip PDF'i site içinde otomatik açar.
- * @param {string} pdfUrl - PDF dosyasının tam adı (örn: Algorithmic_Mastery.pdf)
- * @param {string} titleText - Pencerenin üstünde yazacak başlık
- */
 function openPDF(pdfUrl, titleText) {
     const modal = document.getElementById('pdfViewer');
     const title = document.getElementById('pdfTitle');
@@ -49,17 +44,19 @@ function openPDF(pdfUrl, titleText) {
     // Başlığı ayarla
     title.innerHTML = titleText;
     
-    // iframe etiketiyle PDF'i indirime sokmadan sayfanın içine göm (embed)
-    // #toolbar=0 parametresi bazı tarayıcılarda üst menüyü gizleyerek daha temiz görünüm sağlar
-    body.innerHTML = `<iframe src="${pdfUrl}#toolbar=0" type="application/pdf"></iframe>`;
+    // 1. Adım: Sitenin anlık canlı linkini (URL) otomatik olarak bulur ve PDF adıyla birleştirir.
+    const fullPdfUrl = new URL(pdfUrl, window.location.href).href;
+
+    // 2. Adım: Bu tam linki Google Docs Viewer'a gönderir (Böylece indirme engellenir, direkt okunur)
+    const googleViewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(fullPdfUrl)}&embedded=true`;
+
+    // 3. Adım: Google'ın hazırladığı güvenli okuyucuyu bizim penceremizin içine yerleştirir
+    body.innerHTML = `<iframe src="${googleViewerUrl}" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>`;
 
     // Modalı görünür yap
     modal.style.display = "block";
 }
 
-/**
- * Modalı kapatır ve arka planda çalışan iframe'i temizler.
- */
 function closePDF() {
     document.getElementById('pdfViewer').style.display = "none";
     // İçeriği temizle ki kapatıldığında arka planda açık kalmasın
