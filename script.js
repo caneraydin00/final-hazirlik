@@ -1,84 +1,76 @@
 /**
  * Ana menü ile tablolar arası sayfa yenilenmeden geçiş yapmayı sağlar.
- * @param {string} viewId - Gösterilmek istenen ekranın div ID'si
  */
 function switchView(viewId) {
-    // Tüm uygulama ekranlarını seç
     const views = document.querySelectorAll('.app-view');
-    
-    // Tüm ekranlardan active-view sınıfını kaldırıp gizle
     views.forEach(view => {
         view.classList.remove('active-view');
     });
 
-    // İstenilen ekrana active-view sınıfını ekleyerek görünür yap
     const targetView = document.getElementById(viewId);
     if (targetView) {
         targetView.classList.add('active-view');
-        // Sayfanın en üstüne yumuşak bir şekilde kaydır
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 
 /**
- * Ders Yol Haritaları içindeki sekmeleri (matematik, fizik vb.) değiştirir.
+ * Ders Yol Haritaları içindeki sekmeleri değiştirir.
  */
 function switchTab(event, tabId) {
-    // Tüm tab içeriklerini gizle
     const tabContents = document.querySelectorAll('.tab-content');
     tabContents.forEach(content => {
         content.classList.remove('active');
     });
 
-    // Tüm tab butonlarından active sınıfını kaldır
     const tabButtons = document.querySelectorAll('.tab-btn');
     tabButtons.forEach(button => {
         button.classList.remove('active');
     });
 
-    // Tıklanan butona active sınıfı ekle ve ilgili içeriği göster
     document.getElementById(tabId).classList.add('active');
     event.currentTarget.classList.add('active');
 }
+
+/* ==========================================
+   PDF MODAL (AÇILIR PENCERE VE IFRAME) SİSTEMİ
+========================================== */
+
 /**
- * Ana menü ile tablolar arası sayfa yenilenmeden geçiş yapmayı sağlar.
- * @param {string} viewId - Gösterilmek istenen ekranın div ID'si
+ * İndirmeyi engelleyip PDF'i site içinde otomatik açar.
+ * @param {string} pdfUrl - PDF dosyasının tam adı (örn: Algorithmic_Mastery.pdf)
+ * @param {string} titleText - Pencerenin üstünde yazacak başlık
  */
-function switchView(viewId) {
-    // Tüm uygulama ekranlarını seç
-    const views = document.querySelectorAll('.app-view');
+function openPDF(pdfUrl, titleText) {
+    const modal = document.getElementById('pdfViewer');
+    const title = document.getElementById('pdfTitle');
+    const body = document.getElementById('pdfBody');
+
+    // Başlığı ayarla
+    title.innerHTML = titleText;
     
-    // Tüm ekranlardan active-view sınıfını kaldırıp gizle
-    views.forEach(view => {
-        view.classList.remove('active-view');
-    });
+    // iframe etiketiyle PDF'i indirime sokmadan sayfanın içine göm (embed)
+    // #toolbar=0 parametresi bazı tarayıcılarda üst menüyü gizleyerek daha temiz görünüm sağlar
+    body.innerHTML = `<iframe src="${pdfUrl}#toolbar=0" type="application/pdf"></iframe>`;
 
-    // İstenilen ekrana active-view sınıfını ekleyerek görünür yap
-    const targetView = document.getElementById(viewId);
-    if (targetView) {
-        targetView.classList.add('active-view');
-        // Sayfanın en üstüne yumuşak bir şekilde kaydır (Mobilde çok işe yarar)
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Modalı görünür yap
+    modal.style.display = "block";
 }
 
 /**
- * Ders Yol Haritaları içindeki sekmeleri (matematik, fizik vb.) değiştirir.
+ * Modalı kapatır ve arka planda çalışan iframe'i temizler.
  */
-function switchTab(event, tabId) {
-    // Tüm tab içeriklerini gizle
-    const tabContents = document.querySelectorAll('.tab-content');
-    tabContents.forEach(content => {
-        content.classList.remove('active');
-    });
+function closePDF() {
+    document.getElementById('pdfViewer').style.display = "none";
+    // İçeriği temizle ki kapatıldığında arka planda açık kalmasın
+    document.getElementById('pdfBody').innerHTML = ""; 
+}
 
-    // Tüm tab butonlarından active sınıfını kaldır
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    tabButtons.forEach(button => {
-        button.classList.remove('active');
-    });
-
-    // Tıklanan butona active sınıfı ekle ve ilgili içeriği göster
-    document.getElementById(tabId).classList.add('active');
-    event.currentTarget.classList.add('active');
+// Kullanıcı pencerenin dışındaki siyah alana tıklarsa da kapat
+window.onclick = function(event) {
+    const modal = document.getElementById('pdfViewer');
+    if (event.target == modal) {
+        modal.style.display = "none";
+        document.getElementById('pdfBody').innerHTML = ""; 
+    }
 }
