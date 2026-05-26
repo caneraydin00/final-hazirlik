@@ -119,7 +119,7 @@ section {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--border-color);
-    flex-wrap: wrap; /* Mobilde butonun alta inmesini sağlar */
+    flex-wrap: wrap; 
     gap: 1rem;
 }
 
@@ -128,7 +128,6 @@ section h2 {
     color: #ffffff;
 }
 
-/* Mobil Uyumlu Geri Dön Butonu */
 .back-to-top {
     font-size: 0.9rem;
     color: var(--text-color);
@@ -147,10 +146,9 @@ section h2 {
     color: white;
 }
 
-/* Tabloların Telefondan Taşmaması İçin Scroll */
 .table-responsive {
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* iOS cihazlarda pürüzsüz kaydırma sağlar */
+    -webkit-overflow-scrolling: touch; 
     border-radius: 8px;
 }
 
@@ -167,7 +165,7 @@ th {
     font-weight: 600;
     padding: 1rem;
     border-bottom: 2px solid var(--border-color);
-    white-space: nowrap; /* Başlıkların sıkışmasını engeller */
+    white-space: nowrap; 
 }
 
 td {
@@ -181,10 +179,10 @@ tr:hover { background-color: rgba(255, 255, 255, 0.02); }
 .exam-row { background-color: rgba(244, 63, 94, 0.02); }
 .calendar-exam-day { background-color: rgba(244, 63, 94, 0.04); font-weight: 600; }
 
-/* INTERAKTIF TABS (DERS SEÇİMİ) */
+/* INTERAKTIF TABS */
 .tabs-container {
     display: flex;
-    flex-wrap: nowrap; /* Mobilde sekmeleri yan yana dizer, scroll verir */
+    flex-wrap: nowrap; 
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     gap: 0.75rem;
@@ -204,7 +202,7 @@ tr:hover { background-color: rgba(255, 255, 255, 0.02); }
     cursor: pointer;
     font-weight: 600;
     font-size: 0.95rem;
-    white-space: nowrap; /* Yazıların alt satıra geçmesini engeller */
+    white-space: nowrap; 
     transition: all 0.2s ease;
 }
 
@@ -217,7 +215,6 @@ tr:hover { background-color: rgba(255, 255, 255, 0.02); }
 .tab-content { display: none; }
 .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
 
-/* ETİKETLER VE LİNKLER */
 .badge {
     display: inline-block;
     padding: 0.3rem 0.6rem;
@@ -236,23 +233,94 @@ a.video-link { color: var(--primary-color); text-decoration: none; font-weight: 
 a.video-link:hover { text-decoration: underline; color: #818cf8; }
 .highlight { color: #ffffff; font-weight: 600; }
 
-/* ==========================================
-   📱 MOBİL CİHAZLAR İÇİN ÖZEL KURALLAR
-========================================== */
+/* PDF AÇMA BUTONLARI VE MODAL TASARIMI */
+.btn-pdf {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.btn-pdf:hover {
+    background-color: #f59e0b;
+    color: #121214;
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    color: var(--text-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    color: var(--text-muted);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover { color: #f43f5e; }
+
+.pdf-body ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+.pdf-body li { margin-bottom: 0.5rem; }
+.pdf-body strong { color: #ffffff; }
+
+/* MOBİL İÇİN ÖZEL KURALLAR */
 @media screen and (max-width: 768px) {
     body { padding: 1rem 0.5rem; }
-    
     header h1 { font-size: 1.8rem; }
     .subtitle { font-size: 0.95rem; margin-bottom: 1.5rem; }
-    
     .welcome-box { padding: 1rem; border-radius: 12px; }
-    .nav-cards { gap: 1rem; grid-template-columns: 1fr; /* Mobilde kartları tek sıra yapar */ }
-    
+    .nav-cards { gap: 1rem; grid-template-columns: 1fr; }
     section { padding: 1rem; border-radius: 12px; }
     section h2 { font-size: 1.2rem; }
-    
     .section-header { flex-direction: column; align-items: flex-start; }
-    .back-to-top { width: 100%; text-align: center; } /* Buton mobilde tam genişlik olur */
-    
+    .back-to-top { width: 100%; text-align: center; }
     td, th { padding: 0.75rem; font-size: 0.9rem; }
+}
+
+/* PDF MODAL İÇİN İLAVE İFRAME AYARLARI */
+.pdf-body {
+    height: 65vh; /* Ekranda PDF'i okumak için büyük bir alan açar */
+    width: 100%;
+}
+
+.pdf-body iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* Çirkin çerçeveleri gizler */
+    border-radius: 8px;
+    background-color: #fff; /* PDF'lerin beyaz arka planda düzgün görünmesi için */
 }
